@@ -40,5 +40,6 @@ INSERT INTO recippedia.recipe (id,user_id,name,ingredients,instructions,created_
 INSERT INTO recippedia.recipe (id,user_id,name,ingredients,instructions,created_at,updated_at)
 	VALUES (1,1,'Marinated zebra beef sirloin','- 1 sirloin steak per person - Salt and pepper - 4 tomatoes, peeled and seeded - 1 tbsp. red wine - Sour cream (optional) - 3 tbsp. fresh marjoram - 3 tbsp. fresh thyme - 1/4 tbsp. cracked black pepper - 60 ml (1/4 cup) corn oil','Chop the herbs; combine all the marinade ingredients in a bowl; place the steaks side by side in a large dish; coat with the marinade; marinate for 6 hours or more in the refrigerator, turning occasionally; before cooking, remove the steaks from the refrigerator and season with salt and pepper; in a very hot non-stick pan, sear the steaks and grill them for a few minutes on each side to the desired degree of doneness; transfer to a warm serving platter or plates; add the tomatoes to the same pan and cook for 5 minutes in the meat juices; transfer to the serving platter or plates; deglaze the pan with the red wine, pour over the tomatoes; serve as described above.','2032-02-29 09:09:09','1000-01-01 01:01:01')
 
-
+ALTER TABLE recippedia.recipe DROP COLUMN created_at ;
+ALTER TABLE recippedia.recipe DROP COLUMN updated_at ;
 

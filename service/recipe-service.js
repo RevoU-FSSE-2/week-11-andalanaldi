@@ -3,7 +3,7 @@ const { query } = require('mysql2/promise'); // Import the query function from m
 
 const getAllRecipes = async (req, res) => {
     try {
-      req.dbMysql.query('SELECT * FROM recippedia.recipes', 
+      req.dbMysql.query('SELECT * FROM recippedia.recipe', 
       (err, results) => {
         if (err) {
           throw err;
@@ -15,11 +15,11 @@ const getAllRecipes = async (req, res) => {
     }
   };
   
-  const getRecipeById = async (req, res) => {
+  const getRecipesById = async (req, res) => {
     const { id } = req.params;
     try {
       req.dbMysql.query(
-        'SELECT * FROM recippedia.recipes WHERE id = ?',
+        'SELECT * FROM recippedia.recipe WHERE id = ?',
         [id],
         (err, results) => {
           if (err) {
@@ -38,16 +38,16 @@ const getAllRecipes = async (req, res) => {
   };
   
   const createRecipe = async (req, res) => {
-    const { title, description, ingredients, steps, user_id } = req.body;
+    const { user_id, name, ingredients, instructions } = req.body;
     try {
       req.dbMysql.query(
-        'INSERT INTO recippedia.recipes (title, description, ingredients, steps, user_id) VALUES (?, ?, ?, ?, ?)',
-        [title, description, ingredients, steps, user_id],
+        'INSERT INTO recippedia.recipe (user_id, name, ingredients, instructions) VALUES (?, ?, ?, ?)',
+        [user_id, name, ingredients, instructions],
         (err, result) => {
           if (err) {
             throw err;
           }
-          const newRecipe = { id: result.insertId, title, description, ingredients, steps, user_id };
+          const newRecipe = { id: result.insertId, user_id, name, ingredients, instructions };
           res.status(201).json(newRecipe);
         }
       );
@@ -58,11 +58,11 @@ const getAllRecipes = async (req, res) => {
   
   const updateRecipe = async (req, res) => {
     const { id } = req.params;
-    const { title, description, ingredients, steps, user_id } = req.body;
+    const { user_id, name, ingredients, instructions } = req.body;
     try {
       req.dbMysql.query(
-        'UPDATE recippedia.recipes SET title = ?, description = ?, ingredients = ?, steps = ?, user_id = ? WHERE id = ?',
-        [title, description, ingredients, steps, user_id, id],
+        'UPDATE recippedia.recipe SET user_id = ?, name = ?, ingredients = ?, instructions = ? WHERE id = ?',
+        [user_id, name, ingredients, instructions, id],
         (err, result) => {
           if (err) {
             throw err;
@@ -83,7 +83,7 @@ const getAllRecipes = async (req, res) => {
     const { id } = req.params;
     try {
       req.dbMysql.query(
-        'DELETE FROM recippedia.recipes WHERE id = ?',
+        'DELETE FROM recippedia.recipe WHERE id = ?',
         [id],
         (err, result) => {
           if (err) {
@@ -103,7 +103,7 @@ const getAllRecipes = async (req, res) => {
   
   module.exports = {
     getAllRecipes,
-    getRecipeById,
+    getRecipesById,
     createRecipe,
     updateRecipe,
     deleteRecipe,
