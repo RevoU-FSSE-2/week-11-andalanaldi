@@ -7,7 +7,7 @@ const register = async (req, res) => {
     const { username, password, role } = req.body;
 
     try {
-        if (!['User', 'Publisher'].includes(role)) {
+        if (!['user', 'publisher'].includes(role)) {
             throw new Error('Role must be "user" or "publisher"');
         }
         if (!username.trim()) {
