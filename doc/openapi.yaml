@@ -39,6 +39,21 @@ components:
       properties:
         error:
           type: string
+    InternalServerError:
+      type: object
+      properties:
+        error:
+          type: string
+    RecipeNotFound:
+      type: object
+      properties:
+        error:
+          type: string
+    IncorrectUserPass:
+      type: object
+      properties:
+        error:
+          type: string
     Recipe:
       type: object
       properties:
@@ -51,10 +66,6 @@ components:
         ingredients:
           type: string
         instructions:
-          type: string
-        created_at:
-          type: string
-        updated_at:
           type: string
 paths:
   /auth/register:
@@ -90,6 +101,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequest'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'  
   /auth/login:
     post:
       summary: 'Login user'
@@ -116,6 +133,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/BadRequest'
+        '401':
+          description: 'Username not found / Password is incorrect'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncorrectUserPass'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'  
   /recipe/recipes:
     get:
       security:
@@ -135,6 +164,12 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Recipe'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'              
     post:
       security:
         - bearer: []
@@ -145,7 +180,7 @@ paths:
             schema:
               $ref: '#/components/schemas/Recipe'
       responses:
-        '200':
+        '201':
           description: 'Recipe created successfully'
           content:
             application/json:
@@ -156,6 +191,12 @@ paths:
                     type: string
                   data:
                     $ref: '#/components/schemas/Recipe'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
   /recipe/recipes/{id}:
     get:
       security:
@@ -175,6 +216,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Recipe'
+        '404':
+          description: 'Recipe not found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeNotFound'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
     put:
       security:
         - bearer: []
@@ -203,6 +256,24 @@ paths:
                     type: string
                   data:
                     $ref: '#/components/schemas/Recipe'
+        '400':
+          description: 'No fields to update'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequest'
+        '404':
+          description: 'Recipe not found'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecipeNotFound'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
     delete:
       security:
         - bearer: []
@@ -231,4 +302,10 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/BadRequest'
+                $ref: '#/components/schemas/RecipeNotFound'
+        '500':
+          description: 'Internal server error'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalServerError'
