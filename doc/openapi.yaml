@@ -49,10 +49,26 @@ components:
       properties:
         error:
           type: string
+    Unauthorized:
+      type: object
+      properties:
+        error:
+          type: string
     IncorrectUserPass:
       type: object
       properties:
         error:
+          type: string
+    Create:
+      type: object
+      properties:
+        user_id:
+          type: integer
+        name:
+          type: string
+        ingredients:
+          type: string
+        instructions:
           type: string
     Recipe:
       type: object
@@ -67,6 +83,32 @@ components:
           type: string
         instructions:
           type: string
+    Update:
+      type: object
+      properties:
+        name:
+          type: string
+        ingredients:
+          type: string
+        instructions:
+          type: string
+    UpdateData:
+      type: object
+      properties: 
+        fieldCount: 
+          type: integer
+        affectedRows: 
+          type: integer
+        insertId: 
+          type: integer
+        info: 
+          type: string
+        serverStatus: 
+          type: integer    
+        warningStatus: 
+          type: integer
+        changedRows: 
+          type: integer
 paths:
   /auth/register:
     post:
@@ -134,7 +176,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/BadRequest'
         '401':
-          description: 'Username not found / Password is incorrect'
+          description: 'Unauthorized / Username not found / Password is incorrect'
           content:
             application/json:
               schema:
@@ -178,7 +220,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Recipe'
+              $ref: '#/components/schemas/Create'
       responses:
         '201':
           description: 'Recipe created successfully'
@@ -238,12 +280,12 @@ paths:
           schema:
             type: integer
           required: true
-          description: 'ID of the recipe to update'
+          description: 'ID of the recipe to be updated'
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Recipe'
+              $ref: '#/components/schemas/Update'
       responses:
         '200':
           description: 'Recipe updated successfully'
@@ -255,7 +297,7 @@ paths:
                   message:
                     type: string
                   data:
-                    $ref: '#/components/schemas/Recipe'
+                    $ref: '#/components/schemas/UpdateData'
         '400':
           description: 'No fields to update'
           content:
@@ -284,7 +326,7 @@ paths:
           schema:
             type: integer
           required: true
-          description: 'ID of the recipe to delete'
+          description: 'ID of the recipe to be deleted'
       responses:
         '200':
           description: 'Recipe deleted successfully'
@@ -295,8 +337,12 @@ paths:
                 properties:
                   message:
                     type: string
-                  data:
-                    $ref: '#/components/schemas/Recipe'
+        '401':
+          description: 'Unauthorized'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unauthorized'
         '404':
           description: 'Recipe not found'
           content:
