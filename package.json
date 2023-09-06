@@ -1,12 +1,11 @@
 {
-  "name": "authentication-example",
+  "name": "recippedia-book",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "dev": "nodemon -q app.js"
+    "start": "node app.js"
   },
   "keywords": [],
   "author": "",
@@ -21,11 +20,12 @@
     "mongodb": "^5.8.1",
     "mysql2": "^3.6.0",
     "mysql2-promise": "^0.1.4",
-    "pnpm": "^8.7.0",
+    "node": "^20.5.1",
     "swagger-ui-express": "^5.0.0",
     "yaml": "^2.3.2"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.4.8",
     "nodemon": "^3.0.1"
   }
 }

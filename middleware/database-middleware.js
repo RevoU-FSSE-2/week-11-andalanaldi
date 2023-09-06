@@ -1,10 +1,12 @@
 const mysql = require("mysql2");
 
 const mysqlCon = mysql.createConnection({
-    host: 'localhost',
-    port: 3306,
+    // host: 'localhost',
+    host: 'fdaa:2:c0b9:a7b:12a:b50d:532d:2',
+    // port: 3306,
     user: 'root',
-    password: 'RevoUmysql123',
+    // password: 'RevoUmysql123',
+    password: 'password',
     database: 'recippedia'
 })
 
