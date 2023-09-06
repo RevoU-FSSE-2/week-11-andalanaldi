@@ -18,7 +18,7 @@ INSERT INTO recippedia.`user` (user_id,username,password_hash,`role`)
 	VALUES (2,'souma.shougek@gmail.com','shougekinosouma134','user')
 INSERT INTO recippedia.`user` (user_id,username,password_hash,`role`)
 	VALUES (1,'sanji.strawhat@gmail.com','sanjilovenamiswan123','user')
-
+-- please excute it one by one not all scripts
 CREATE TABLE `recipe` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,

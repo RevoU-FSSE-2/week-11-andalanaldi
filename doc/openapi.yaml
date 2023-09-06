@@ -4,6 +4,8 @@ info:
   version: 1.0.0
   description: 'API for managing recipe books with RBAC'
 servers:
+  - url: https://recippedia-book.fly.dev/
+    description: 'Production server'
   - url: http://localhost:3000
     description: 'Development server'
 components:

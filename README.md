@@ -1,6 +1,6 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/XqBuIcOG)
 
-# Week 11 Assignment : Backend Project 
+# Week 11 Assignment : Backend Project deployed on https://recippedia-book.fly.dev/api-docs/
 
 This week 11 assignment which is Backend Project implements node js, express, authentication, authorization, open api documentation and validation in swagger. Here are the requirements and steps that I did to develop recipe book backend web app as described below:
 
@@ -55,6 +55,6 @@ Only publisher who can update and delete recipes and do all CRUD functionality w
 ## Supporting Tools 
 Chat GPT
 
-
+Please visit https://recippedia-book.fly.dev/api-docs/ for checking deployment with Open API Swagger Preview.
 
 Please contact author at andalanaldi@gmail.com for further information. Thank you
